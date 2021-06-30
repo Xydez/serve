@@ -1,0 +1,23 @@
+{
+  "name": "file-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@swc/cli": "^0.1.46",
+    "@swc/core": "^1.2.62",
+    "@swc/helpers": "^0.2.12",
+    "@types/express": "^4.17.12",
+    "@types/node": "^15.12.5",
+    "nodemon": "^2.0.9"
+  },
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "start": "swc src -d dist && node dist/main.js",
+    "build": "swc src -d dist",
+    "serve": "nodemon -e ts -w src -x \"swc src -d dist && node dist/main.js\""
+  }
+}
