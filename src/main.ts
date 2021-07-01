@@ -5,6 +5,7 @@ import { Logger, LogLevel } from "./Logger";
 import fs from "fs";
 import path from "path";
 import { inspect } from "util";
+import http from "http";
 
 const logger = new Logger({ level: LogLevel.Debug });
 
@@ -72,13 +73,22 @@ async function main(): Promise<number>
 		}
 	});
 
+	let server: http.Server | null = null;
+
 	await new Promise<void>((resolve, reject) => {
-		app.listen(PORT, () => {
+		server = app.listen(PORT, () => {
 			logger.info(`Listening at http://localhost:${PORT}/`);
 		}).on("close", () => {
 			resolve();
 		});
 	});
+
+	const termfn = () => {
+		logger.info("Interrupt signal recieved");
+		server.close();
+	};
+
+	process.on("SIGINT", termfn);
 }
 
 try {

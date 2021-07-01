@@ -20,9 +20,9 @@
     "regenerator-runtime": "^0.13.7"
   },
   "scripts": {
-    "start": "swc src -d dist && node dist/main.js -- video.mp4",
+    "start": "swc src -d dist && node dist/main.js",
     "build": "swc src -d dist",
-    "serve": "nodemon -e ts -w src -x \"swc src -d dist && node dist/main.js -- video.mp4\"",
+    "serve": "nodemon -e ts -w src -x \"swc src -d dist && node dist/main.js\"",
     "preinstall": "swc src -d dist"
   }
 }
