@@ -1,7 +1,10 @@
 {
-  "name": "file-server",
+  "name": "serve",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/main.js",
+  "bin": {
+    "serve": "./dist/main.js"
+  },
   "license": "MIT",
   "devDependencies": {
     "@swc/cli": "^0.1.46",
@@ -13,11 +16,13 @@
   },
   "dependencies": {
     "chalk": "^4.1.1",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "regenerator-runtime": "^0.13.7"
   },
   "scripts": {
-    "start": "swc src -d dist && node dist/main.js",
+    "start": "swc src -d dist && node dist/main.js -- video.mp4",
     "build": "swc src -d dist",
-    "serve": "nodemon -e ts -w src -x \"swc src -d dist && node dist/main.js\""
+    "serve": "nodemon -e ts -w src -x \"swc src -d dist && node dist/main.js -- video.mp4\"",
+    "preinstall": "swc src -d dist"
   }
 }
